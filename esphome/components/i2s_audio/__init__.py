@@ -243,7 +243,7 @@ def _final_validate(_):
 
 
 def use_legacy():
-    return not (CORE.using_esp32 and not _use_legacy_driver)
+    return not (CORE.is_esp32 and not _use_legacy_driver)
 
 
 FINAL_VALIDATE_SCHEMA = _final_validate
@@ -256,7 +256,7 @@ async def to_code(config):
         cg.add_define("USE_I2S_LEGACY")
 
     # Helps avoid callbacks being skipped due to processor load
-    if CORE.using_esp32:
+    if CORE.is_esp32:
         add_idf_sdkconfig_option("CONFIG_I2S_ISR_IRAM_SAFE", True)
 
     cg.add(var.set_lrclk_pin(config[CONF_I2S_LRCLK_PIN]))
