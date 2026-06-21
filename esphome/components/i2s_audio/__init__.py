@@ -243,7 +243,7 @@ def _final_validate(_):
 
 
 def use_legacy():
-    return not (CORE.using_esp and not _use_legacy_driver)
+    return not (CORE.using_esp32 and not _use_legacy_driver)
 
 
 FINAL_VALIDATE_SCHEMA = _final_validate
